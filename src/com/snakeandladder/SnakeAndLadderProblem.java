@@ -6,34 +6,38 @@ public class SnakeAndLadderProblem {
 
 
     public static void main(String[] args) {
-        int start_Position = 0;
         int player_Position = 0;
-        Random random = new Random();
-        System.out.println("Starting Position of the Player1 is : "+start_Position+"\n");
-
-        int dice_Rolls = (random.nextInt(6)+1);
-        System.out.println("The Player rolls the die and gets a number : "+dice_Rolls+"\n");
-
-        int option = (int) Math.floor(Math.random()*3 %3);
-        player_Position += dice_Rolls;
-        switch (option)
-
+        int i = 0;
+        Random rand = new Random();
+        while (player_Position != 100)
         {
-            case 0 :
-                System.out.println("No play condition, Player at same position \n");
-                break;
-            case 1 :
-                player_Position += dice_Rolls;
-                System.out.println("Great...! Player moved by : "+dice_Rolls+"\n");
-                System.out.println("Player current position is : "+player_Position);
-                break;
-            case 2 :
-                player_Position -= dice_Rolls;
-                System.out.println("Ohh...! Player moved down to : "+dice_Rolls+"\n");
-                System.out.println("Player current position is : "+player_Position);
-                break;
+            ++i;
+            int diceRoll = rand.nextInt(1, 7);
+            int snakeLadder = rand.nextInt(1,3);
+            switch (snakeLadder)
+            {
+                case 1:
+                    System.out.println("\nGreat...! Player moved by :  " + diceRoll);
+                    player_Position += diceRoll;
+                    System.out.println("Player Position is: " + player_Position);
+                    break;
+                case 2:
+                    player_Position -= diceRoll;
+                    if (player_Position < 0)
+                    {
+                        player_Position = 0;
+                        System.out.println("\nOhh...! Player moved down to " +diceRoll);
+                        System.out.println("\nOhh...! Player has to restart from position: " + player_Position);
+                    }
+                    System.out.println("\nOhh...! Player moved down to " +diceRoll);
+                    System.out.println("Player position is: "+player_Position);
+                    break;
+                default:
+                    player_Position += diceRoll;
+                    System.out.println("Player position is: " + player_Position);
+                    break;
+            }
         }
-
 
     }
 }
