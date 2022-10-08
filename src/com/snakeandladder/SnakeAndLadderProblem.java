@@ -37,5 +37,7 @@ public class SnakeAndLadderProblem {
             }
         }
         System.out.println("Hooray...! Player1 Wins and reaches winning position: "+player_Position);
+        System.out.println("Dice Rolled for total of "+i+" times to win the game");
+
     }
 }
