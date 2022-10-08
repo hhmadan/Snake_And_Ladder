@@ -3,8 +3,6 @@ package com.snakeandladder;
 import java.util.Random;
 
 public class SnakeAndLadderProblem {
-
-
     public static void main(String[] args) {
         int player_Position = 0;
         int i = 0;
@@ -13,7 +11,7 @@ public class SnakeAndLadderProblem {
         {
             ++i;
             int diceRoll = rand.nextInt(1, 7);
-            int snakeLadder = rand.nextInt(1,3);
+            int snakeLadder = (int) Math.floor(Math.random()*3 %3);
             switch (snakeLadder)
             {
                 case 1:
@@ -38,6 +36,6 @@ public class SnakeAndLadderProblem {
                     break;
             }
         }
-
+        System.out.println("Hooray...! Player1 Wins and reaches winning position: "+player_Position);
     }
 }
