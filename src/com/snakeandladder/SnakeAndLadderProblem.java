@@ -3,37 +3,81 @@ package com.snakeandladder;
 import java.util.Random;
 
 public class SnakeAndLadderProblem {
-
-
     public static void main(String[] args) {
-        int start_Position = 0;
-        int player_Position = 0;
-        Random random = new Random();
-        System.out.println("Starting Position of the Player1 is : "+start_Position+"\n");
+        int TotalNoOfDiceRoll = 0;
+        int playerPosition = 1;
+        int diceRoll = 0;
+        int SnakeArray[] = {47, 62, 97};
+        int LadderArray[] = {9, 57, 20};
 
-        int dice_Rolls = (random.nextInt(6)+1);
-        System.out.println("The Player rolls the die and gets a number : "+dice_Rolls+"\n");
+        System.out.println("Welcome to the Game of SNAKE & LADDER");
+        System.out.println("Starting Position of the Player is 0");
 
-        int option = (int) Math.floor(Math.random()*3 %3);
-        player_Position += dice_Rolls;
-        switch (option)
+        int player1 = calculateCount(playerPosition, diceRoll, SnakeArray, LadderArray, TotalNoOfDiceRoll);
+        int player2 = calculateCount(playerPosition, diceRoll, SnakeArray, LadderArray, TotalNoOfDiceRoll);
 
-        {
-            case 0 :
-                System.out.println("No play condition, Player at same position \n");
-                break;
-            case 1 :
-                player_Position += dice_Rolls;
-                System.out.println("Great...! Player moved by : "+dice_Rolls+"\n");
-                System.out.println("Player current position is : "+player_Position);
-                break;
-            case 2 :
-                player_Position -= dice_Rolls;
-                System.out.println("Ohh...! Player moved down to : "+dice_Rolls+"\n");
-                System.out.println("Player current position is : "+player_Position);
-                break;
+        if (player1 > player2)
+            System.out.println("CONGRATULATIONS...Player1 is the winner");
+        else if (player2 > player1)
+            System.out.println("CONGRATULATIONS...Player2 is the winner");
+        else if (player1 == player2)
+            System.out.println("OOPS...! This Match is Draw");
+
+    }
+    public static int calculateCount(int playerPosition, int diceRoll, int SnakeArray[], int LadderArray[], int TotalNoOfDiceRoll){
+        for (playerPosition = 1; playerPosition <= 100; playerPosition++) {
+            double random = (double) (Math.random() * 6);
+            diceRoll = (int) random;
+            System.out.println("Dice Number =" + " " + diceRoll);
+            playerPosition = playerPosition + diceRoll;
+            playerPosition = playerPosition - 1;
+
+            System.out.println("Current Position =" + " " + playerPosition);
+            TotalNoOfDiceRoll++;
+
+            if (playerPosition == 100) {
+                System.out.println("CONGRATULATION!! YOU WON THE GAME.");
+            }
+            if (diceRoll == 0) {
+                playerPosition = playerPosition - diceRoll;
+                System.out.println("You have to stay on the same position!!");
+            }
+            if (playerPosition == SnakeArray[0]) {
+                playerPosition = 5;
+                System.out.println("OOPS...IT'S A SNAKE !");
+                System.out.println("You are at " + playerPosition + " position.");
+
+            } else if (playerPosition == SnakeArray[1]) {
+                playerPosition = 37;
+                System.out.println("OOPS...IT'S A SNAKE !");
+                System.out.println("You are at " + playerPosition + " position.");
+
+            } else if (playerPosition == SnakeArray[2]) {
+                playerPosition = 32;
+                System.out.println("OOPS...IT'S A SNAKE !");
+                System.out.println("You are at " + playerPosition + " position.");
+
+            } else if (playerPosition == LadderArray[0]) {
+                playerPosition = 44;
+                System.out.println("HURRAY...! YOU GOT A LADDER.");
+                System.out.println("You are at " + playerPosition + " position.");
+
+            } else if (playerPosition == LadderArray[1]) {
+                playerPosition = 79;
+                System.out.println("HURRAY...! YOU GOT A LADDER.");
+                System.out.println("You are at " + playerPosition + " position.");
+
+            } else if (playerPosition == LadderArray[2]) {
+                playerPosition = 98;
+                System.out.println("HURRAY...! YOU GOT A LADDER.");
+                System.out.println("You are at " + playerPosition + " position.");
+
+            } else if (playerPosition > 100) {
+                playerPosition = playerPosition - diceRoll;
+                System.out.println("YOU CAN'T JUMP, YOU MUST LAND ON A 100.");
+            }
         }
-
-
+        System.out.println("Number of Times The Dice was rolled to Win the Game =" + TotalNoOfDiceRoll);
+        return playerPosition;
     }
 }
