@@ -1,8 +1,8 @@
-//UC1 and Uc2 and UC3 combined
+//Only checking Options either No play, Snake or Ladder in single dice roll
 package com.snakeandladder;
 import java.util.Random;
 public class SnakeAndLadderProblem {
-    {
+    public static void main(String[] args) {
         int playerPosition = 1;
         int diceRoll = 0;
         int SnakeArray[] = { 47, 62, 97 };
@@ -11,8 +11,8 @@ public class SnakeAndLadderProblem {
         System.out.println("Welcome to the Game of SNAKE & LADDER");
         System.out.println("Starting Position of the Player is 0");
 
-        Random random = new Random();
-        diceRoll = (random.nextInt(6)+1);
+        double random = (double) (Math.random() * 6);
+        diceRoll = (int) random;
         System.out.println("Dice Number =" + " " + diceRoll);
         playerPosition = playerPosition + diceRoll;
         playerPosition = playerPosition - 1;
